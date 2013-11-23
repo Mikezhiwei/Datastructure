@@ -27,7 +27,7 @@ public class Tree {
 	         
 	         public void inorder(TreeNode p)
 	         {
-	        	   if(p!=null)
+	        	   if(p!=null)//递归结束的条件
 	        	   {
 	        		   inorder(p.lchild);//先走左节点的路线
 	        		   System.out.print(p.data);//再访问中间节点的
@@ -156,5 +156,32 @@ public class Tree {
 	        	    		 p=p.rchild;
 	        	    	}
 	        	    }
+	         }
+	         public int getHigh(TreeNode p)
+	         {
+	        	  int m,n;
+	        	  if(p==null)
+	        	  {
+	        		  return 0;
+	        	  }else{
+	        		  m=getHigh(p.lchild);
+	        		  n=getHigh(p.rchild);
+	        		  return((m>n?m:n)+1);
+	        	  }
+	         }
+	         public int getLHigh(TreeNode p)
+	         {
+	        	  TreeNode lp=p.lchild;
+	        	  return(this.getHigh(lp));
+	         }
+	         public int getRHigh(TreeNode p)
+	         {
+	        	 TreeNode rp=p.rchild;
+	        	 return(this.getHigh(rp));
+	         }
+	         public int SubHigh(TreeNode p)
+	         {
+	        	  int sub=this.getLHigh(p)-this.getRHigh(p);
+	        	  return(sub>0?sub:(-sub));
 	         }
 }
